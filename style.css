@@ -1,1 +1,518 @@
+/* ==================================================
+AARON BIRTHDAY WEBSITE
+PART 2A - GLOBAL + PASSWORD + ENVELOPE
+================================================== */
 
+:root{
+--deep-red:#5b0017;
+--burgundy:#7b1028;
+--rose-red:#b1123a;
+--soft-pink:#ffd6df;
+--light-pink:#ffe8ee;
+--glass-bg:rgba(255,255,255,0.12);
+--glass-border:rgba(255,255,255,0.18);
+--white:#ffffff;
+--shadow:0 15px 45px rgba(0,0,0,.35);
+}
+
+/* ==================================================
+RESET
+================================================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+min-height:100vh;
+overflow-x:hidden;
+color:white;
+
+```
+background:
+    radial-gradient(circle at top left,#a8002b 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#6e001c 0%,transparent 30%),
+    linear-gradient(
+        135deg,
+        #2d000b,
+        #4a0013,
+        #65001c,
+        #8a1031
+    );
+```
+
+}
+
+/* ==================================================
+UTILITIES
+================================================== */
+
+.hidden{
+display:none !important;
+}
+
+.screen{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:25px;
+}
+
+.section{
+padding:90px 20px;
+}
+
+.center{
+text-align:center;
+}
+
+.active{
+display:flex;
+}
+
+.glass-card{
+background:var(--glass-bg);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+```
+border:1px solid var(--glass-border);
+
+border-radius:28px;
+
+box-shadow:var(--shadow);
+```
+
+}
+
+.section-title{
+font-family:'Great Vibes',cursive;
+font-size:3rem;
+margin-bottom:25px;
+text-align:center;
+color:#fff;
+text-shadow:
+0 0 10px rgba(255,255,255,.3),
+0 0 20px rgba(255,120,150,.3);
+}
+
+/* ==================================================
+FLOATING HEARTS
+================================================== */
+
+.floating-hearts,
+.floating-roses{
+position:fixed;
+inset:0;
+overflow:hidden;
+pointer-events:none;
+z-index:-1;
+}
+
+.floating-hearts::before,
+.floating-hearts::after{
+content:"❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️";
+position:absolute;
+width:100%;
+white-space:nowrap;
+font-size:24px;
+opacity:.25;
+}
+
+.floating-hearts::before{
+top:10%;
+animation:floatHearts 18s linear infinite;
+}
+
+.floating-hearts::after{
+top:65%;
+animation:floatHeartsReverse 22s linear infinite;
+}
+
+@keyframes floatHearts{
+
+```
+from{
+    transform:translateX(-100%);
+}
+
+to{
+    transform:translateX(100%);
+}
+```
+
+}
+
+@keyframes floatHeartsReverse{
+
+```
+from{
+    transform:translateX(100%);
+}
+
+to{
+    transform:translateX(-100%);
+}
+```
+
+}
+
+/* ==================================================
+PASSWORD SCREEN
+================================================== */
+
+.password-card{
+width:100%;
+max-width:750px;
+padding:50px 35px;
+text-align:center;
+}
+
+.main-title{
+font-family:'Great Vibes',cursive;
+font-size:4.5rem;
+line-height:1.2;
+margin-bottom:15px;
+
+```
+text-shadow:
+    0 0 15px rgba(255,255,255,.35),
+    0 0 40px rgba(255,0,80,.3);
+```
+
+}
+
+.subtitle{
+color:var(--soft-pink);
+margin-bottom:35px;
+font-size:1.05rem;
+}
+
+.password-container{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+#passwordInput{
+width:100%;
+padding:16px 18px;
+
+```
+border:none;
+outline:none;
+
+border-radius:14px;
+
+background:rgba(255,255,255,.15);
+
+color:white;
+
+font-size:1rem;
+```
+
+}
+
+#passwordInput::placeholder{
+color:rgba(255,255,255,.75);
+}
+
+.btn-primary{
+border:none;
+cursor:pointer;
+
+```
+padding:16px 24px;
+
+border-radius:14px;
+
+background:
+    linear-gradient(
+        135deg,
+        #ff4f78,
+        #d3134c
+    );
+
+color:white;
+
+font-weight:600;
+
+transition:.35s ease;
+```
+
+}
+
+.btn-primary:hover{
+
+```
+transform:
+    translateY(-4px)
+    scale(1.02);
+
+box-shadow:
+    0 10px 30px rgba(255,0,90,.4);
+```
+
+}
+
+#passwordMessage{
+min-height:30px;
+font-size:.95rem;
+color:var(--light-pink);
+}
+
+/* ==================================================
+ENVELOPE SCREEN
+================================================== */
+
+#envelope-screen{
+text-align:center;
+}
+
+.envelope-wrapper{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:25px;
+}
+
+.envelope-text{
+color:var(--soft-pink);
+font-size:1rem;
+}
+
+.envelope{
+width:320px;
+height:220px;
+
+```
+position:relative;
+
+cursor:pointer;
+
+transition:all .8s ease;
+
+filter:
+    drop-shadow(0 0 20px rgba(255,70,110,.45))
+    drop-shadow(0 0 40px rgba(255,70,110,.25));
+```
+
+}
+
+.envelope:hover{
+transform:
+translateY(-8px)
+scale(1.03);
+}
+
+.envelope-back{
+
+```
+position:absolute;
+inset:0;
+
+border-radius:12px;
+
+background:
+    linear-gradient(
+        145deg,
+        #d4184c,
+        #8f0e31
+    );
+```
+
+}
+
+.envelope-letter-preview{
+
+```
+position:absolute;
+
+top:50%;
+left:50%;
+
+transform:
+    translate(-50%,-50%);
+
+font-size:2.8rem;
+
+z-index:1;
+```
+
+}
+
+.envelope-flap{
+
+```
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+clip-path:
+    polygon(
+        0 0,
+        100% 0,
+        50% 55%
+    );
+
+background:
+    linear-gradient(
+        135deg,
+        #ff7098,
+        #bf0f44
+    );
+
+transform-origin:top;
+
+transition:
+    transform 1s ease;
+```
+
+}
+
+.envelope.open .envelope-flap{
+transform:rotateX(180deg);
+}
+
+.envelope.open{
+transform:scale(1.08);
+}
+
+/* ==================================================
+GLOWING EFFECTS
+================================================== */
+
+.envelope::before{
+
+```
+content:"";
+
+position:absolute;
+
+inset:-12px;
+
+border-radius:18px;
+
+background:
+    radial-gradient(
+        circle,
+        rgba(255,80,120,.45),
+        transparent 70%
+    );
+
+z-index:-1;
+
+animation:glowPulse 3s ease-in-out infinite;
+```
+
+}
+
+@keyframes glowPulse{
+
+```
+0%{
+    opacity:.4;
+    transform:scale(.95);
+}
+
+50%{
+    opacity:1;
+    transform:scale(1.08);
+}
+
+100%{
+    opacity:.4;
+    transform:scale(.95);
+}
+```
+
+}
+
+/* ==================================================
+ENTRANCE ANIMATIONS
+================================================== */
+
+.password-card,
+.envelope-wrapper{
+
+```
+animation:
+    fadeUp 1s ease forwards;
+```
+
+}
+
+@keyframes fadeUp{
+
+```
+from{
+    opacity:0;
+    transform:
+        translateY(30px);
+}
+
+to{
+    opacity:1;
+    transform:
+        translateY(0);
+}
+```
+
+}
+
+/* ==================================================
+RESPONSIVE
+================================================== */
+
+@media(max-width:768px){
+
+```
+.main-title{
+    font-size:3rem;
+}
+
+.section-title{
+    font-size:2.4rem;
+}
+
+.password-card{
+    padding:35px 22px;
+}
+
+.envelope{
+    width:260px;
+    height:180px;
+}
+```
+
+}
+
+@media(max-width:480px){
+
+```
+.main-title{
+    font-size:2.4rem;
+}
+
+.subtitle{
+    font-size:.95rem;
+}
+
+.btn-primary{
+    width:100%;
+}
+```
+
+}
